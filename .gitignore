@@ -1,0 +1,51 @@
+# ---- Global ----
+.DS_Store
+Thumbs.db
+*.log
+logs/
+*.tmp
+*.swp
+.env
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+
+# ---- Java / Maven (backend) ----
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/bin/
+
+# STS / Eclipse specific
+backend/.springBeans
+backend/.metadata/
+
+# ---- Node / Angular (frontend) ----
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.angular/
+Frontend/.cache/
+
+# NPM/Yarn/PNPM logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Coverage / test outputs
+coverage/
+.jest/
+
+# OS
+ehthumbs.db
+Icon?
+
+# Misc
+*.local
+*.cache

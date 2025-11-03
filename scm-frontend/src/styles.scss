@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+// Initialize Material core styles
+@include mat.core();
+
+// Define a default light theme (Material 3)
+$theme: mat.define-theme();
+
+// Apply theme to all Material components
+@include mat.all-component-themes($theme);
+
+// App global styles
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.app-container {
+  padding: 16px;
+}

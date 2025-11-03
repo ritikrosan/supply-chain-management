@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SCM Dashboard</title>
+  <meta name="description" content="Supply Chain Management API & Dashboard" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="gradient-overlay" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo-spark"></div>
+        <span>SCM</span>
+      </div>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#endpoints">API</a>
+        <a href="#get-started" class="btn small">Get Started</a>
+        <button id="theme-toggle" class="btn small" type="button" aria-label="Toggle theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-content">
+        <h1 class="shine">Supply Chain Management</h1>
+        <p class="lead">Modern API-driven SCM with products, suppliers, inventory and purchase orders. Built with Spring Boot.</p>
+        <div class="cta">
+          <a class="btn primary" href="/api" target="_self">Open API Root</a>
+          <a class="btn ghost" href="#endpoints">Explore Endpoints</a>
+        </div>
+        <div class="stats">
+          <div class="stat-card" data-animate>
+            <div class="stat-value" id="stat-health">—</div>
+            <div class="stat-label">API Health</div>
+          </div>
+          <div class="stat-card" data-animate>
+            <div class="stat-value">/api</div>
+            <div class="stat-label">Base Path</div>
+          </div>
+          <div class="stat-card" data-animate>
+            <div class="stat-value">v1</div>
+            <div class="stat-label">Version</div>
+          </div>
+          <div class="stat-card" data-animate>
+            <canvas id="latency-chart" width="300" height="40" aria-label="API latency sparkline"></canvas>
+            <div class="stat-label"><span id="latency-value">—</span> ms</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="card-float">
+          <div class="mini-card">Products</div>
+          <div class="mini-card delay-1">Suppliers</div>
+          <div class="mini-card delay-2">Inventory</div>
+          <div class="mini-card delay-3">POs</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container features">
+      <h2>Why this SCM?</h2>
+      <div class="grid-3">
+        <div class="feature-card" data-animate>
+          <div class="icon-circle">📦</div>
+          <h3>Product Catalog</h3>
+          <p>Manage SKUs, prices, and descriptions with clean REST endpoints.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="icon-circle">🤝</div>
+          <h3>Suppliers</h3>
+          <p>Link suppliers to products for easy sourcing and reporting.</p>
+        </div>
+        <div class="feature-card" data-animate>
+          <div class="icon-circle">📈</div>
+          <h3>Inventory</h3>
+          <p>Track stock levels and availability across your catalog.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="endpoints" class="container endpoints">
+      <h2>Quick API Links</h2>
+      <div class="grid-2">
+        <a class="api-card" href="/api/products" target="_self" data-animate>
+          <span class="api-method get">GET</span>
+          <div>
+            <div class="api-title">/api/products</div>
+            <div class="api-desc">List products</div>
+          </div>
+        </a>
+        <a class="api-card" href="/api/suppliers" target="_self" data-animate>
+          <span class="api-method get">GET</span>
+          <div>
+            <div class="api-title">/api/suppliers</div>
+            <div class="api-desc">List suppliers</div>
+          </div>
+        </a>
+        <a class="api-card" href="/api/inventory" target="_self" data-animate>
+          <span class="api-method get">GET</span>
+          <div>
+            <div class="api-title">/api/inventory</div>
+            <div class="api-desc">List inventory</div>
+          </div>
+        </a>
+        <a class="api-card" href="/api/purchase-orders" target="_self" data-animate>
+          <span class="api-method get">GET</span>
+          <div>
+            <div class="api-title">/api/purchase-orders</div>
+            <div class="api-desc">List purchase orders</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="get-started" class="container get-started">
+      <div class="cta-card" data-animate>
+        <h2>Get Started</h2>
+        <p>Use the quick links above or integrate this API with your frontend. Health check is available below.</p>
+        <div class="cta-actions">
+          <a class="btn primary" href="/api/health">Check Health</a>
+          <a class="btn ghost" href="/api">Open API</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> SCM Demo</span>
+      <a href="#top" class="top-link">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

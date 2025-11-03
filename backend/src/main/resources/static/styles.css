@@ -1,0 +1,157 @@
+/* Base */
+:root{
+  --bg-start:#0f172a; /* slate-900 */
+  --bg-end:#1e293b;   /* slate-800 */
+  --primary:#22d3ee;  /* cyan-400 */
+  --primary-2:#60a5fa;/* blue-400 */
+  --text:#e5e7eb;     /* zinc-200 */
+  --muted:#94a3b8;    /* slate-400 */
+  --card:#0b1222aa;   /* translucent */
+  --glass:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.12);
+}
+/* Light theme overrides */
+body[data-theme="light"]{
+  --bg-start:#f2f6ff;
+  --bg-end:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --card:#ffffffcc;
+  --glass:rgba(0,0,0,0.04);
+  --border:rgba(0,0,0,0.10);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg-start),var(--bg-end));
+  overflow-x:hidden;
+}
+
+/* Background canvas and overlay */
+#bg-canvas{
+  position:fixed; inset:0; width:100%; height:100%;
+  z-index:-2; display:block;
+}
+.gradient-overlay{
+  position:fixed; inset:-20vmax; z-index:-1;
+  background:radial-gradient(60vmax 60vmax at 10% 10%, rgba(96,165,250,0.15), transparent 60%),
+             radial-gradient(60vmax 60vmax at 90% 10%, rgba(34,211,238,0.12), transparent 60%),
+             radial-gradient(60vmax 60vmax at 50% 80%, rgba(56,189,248,0.10), transparent 60%);
+  filter:saturate(120%) blur(40px);
+  pointer-events:none;
+}
+
+/* Layout */
+.container{max-width:1100px; margin:0 auto; padding:0 24px}
+.site-header{
+  position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(180deg, rgba(2,6,23,0.75), rgba(2,6,23,0));
+  border-bottom:1px solid var(--border);
+  z-index:10;
+}
+.header-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+.brand{display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:0.5px}
+.logo-spark{width:18px; height:18px; border-radius:6px; background:linear-gradient(135deg,var(--primary),var(--primary-2)); box-shadow:0 4px 16px rgba(34,211,238,0.6)}
+.nav a{color:var(--text); text-decoration:none; margin-left:18px; opacity:0.9}
+.nav a:hover{opacity:1}
+
+/* Buttons */
+.btn{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:10px; border:1px solid var(--border); text-decoration:none; color:var(--text); transition:transform .2s ease, background .2s}
+.btn.small{padding:8px 12px; font-size:14px}
+.btn.primary{background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(96,165,250,0.15)); border-color:transparent}
+.btn.primary:hover{transform:translateY(-1px); background:linear-gradient(135deg,rgba(34,211,238,0.25),rgba(96,165,250,0.25))}
+.btn.ghost{background:transparent}
+.btn.ghost:hover{background:rgba(255,255,255,0.06)}
+
+/* Hero */
+.hero{display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:center; padding:64px 0}
+.hero h1{font-size:clamp(32px,6vw,56px); line-height:1.05; margin:0 0 10px}
+.lead{color:var(--muted); font-size:clamp(16px,2.5vw,18px); margin:0 0 20px}
+.cta{display:flex; gap:12px; margin:18px 0 28px}
+.hero-visual{position:relative; min-height:320px}
+
+/* Orbs */
+.orb{position:absolute; border-radius:50%; filter:blur(6px); opacity:0.8; animation:float 8s ease-in-out infinite}
+.orb-1{right:15%; top:10%; width:160px; height:160px; background:radial-gradient(circle at 30% 30%, rgba(34,211,238,0.6), rgba(34,211,238,0) 60%)}
+.orb-2{right:5%; bottom:0; width:220px; height:220px; background:radial-gradient(circle at 70% 70%, rgba(96,165,250,0.6), rgba(96,165,250,0) 60%); animation-delay:-2s}
+
+/* Floating mini cards */
+.card-float{position:absolute; inset:0; display:grid; place-content:center; gap:10px}
+.mini-card{display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; border-radius:12px; background:var(--glass); border:1px solid var(--border); box-shadow:0 6px 20px rgba(0,0,0,0.25); transform:translateY(0); animation:float 5s ease-in-out infinite}
+.mini-card.delay-1{animation-delay:.6s}
+.mini-card.delay-2{animation-delay:1.2s}
+.mini-card.delay-3{animation-delay:1.8s}
+
+/* Stats */
+.stats{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px}
+.stat-card{background:var(--glass); border:1px solid var(--border); border-radius:14px; padding:14px 16px; box-shadow:0 8px 30px rgba(0,0,0,0.25); opacity:0; transform:translateY(10px)}
+.stat-value{font-weight:800; font-size:20px}
+.stat-label{color:var(--muted); font-size:12px}
+
+/* Features */
+.features{padding:20px 0 12px}
+.features h2{font-size:28px; margin:10px 0 18px}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.feature-card{background:var(--glass); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,0.25); opacity:0; transform:translateY(10px)}
+.icon-circle{width:40px; height:40px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,rgba(34,211,238,0.25),rgba(96,165,250,0.25)); margin-bottom:8px}
+
+/* Endpoints */
+.endpoints{padding:24px 0}
+.endpoints h2{font-size:28px; margin-bottom:12px}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px}
+.api-card{display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--text); background:var(--glass); border:1px solid var(--border); border-radius:16px; padding:14px; box-shadow:0 10px 30px rgba(0,0,0,0.25); transition:transform .2s ease, background .2s; opacity:0; transform:translateY(10px)}
+.api-card:hover{transform:translateY(-2px); background:rgba(255,255,255,0.08)}
+.api-method{font-weight:700; font-size:12px; padding:6px 8px; border-radius:8px; background:linear-gradient(135deg,rgba(34,211,238,0.3),rgba(96,165,250,0.3));}
+.api-title{font-weight:700}
+.api-desc{font-size:13px; color:var(--muted)}
+
+/* CTA */
+.get-started{padding:10px 0 64px}
+.cta-card{background:linear-gradient(180deg, rgba(34,211,238,0.06), rgba(96,165,250,0.06)); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow:0 20px 50px rgba(0,0,0,0.25); text-align:center; opacity:0; transform:translateY(10px)}
+.cta-actions{display:flex; gap:12px; justify-content:center; margin-top:16px}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border); padding:18px 0; background:linear-gradient(0deg, rgba(2,6,23,0.75), rgba(2,6,23,0))}
+.footer-inner{display:flex; align-items:center; justify-content:space-between}
+.top-link{color:var(--muted); text-decoration:none}
+.top-link:hover{color:var(--text)}
+
+/* Utilities */
+.shine{background:linear-gradient(90deg, #fff, #d1e9ff, #fff); -webkit-background-clip:text; background-clip:text; color:transparent; background-size:200% auto; animation:shine 8s linear infinite}
+.ok{color:#34d399}
+.down{color:#f87171}
+
+/* Animations */
+@keyframes shine{0%{background-position:0% 50%} 100%{background-position:200% 50%}}
+@keyframes float{0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+@keyframes toastIn{from{transform:translateY(10px); opacity:0} to{transform:translateY(0); opacity:1}}
+@keyframes toastOut{from{opacity:1} to{opacity:0}}
+
+/* Scroll reveal hook */
+[data-animate].visible, .stat-card.visible, .feature-card.visible, .api-card.visible, .cta-card.visible{animation:fadeUp .6s ease forwards}
+
+/* Toasts */
+.toast-container{position:fixed; right:16px; bottom:16px; display:flex; flex-direction:column; gap:10px; z-index:50}
+.toast{min-width:220px; max-width:320px; padding:12px 14px; border-radius:12px; border:1px solid var(--border); background:var(--card); box-shadow:0 10px 30px rgba(0,0,0,0.25); animation:toastIn .2s ease forwards}
+.toast.info{border-color:rgba(96,165,250,0.4)}
+.toast.success{border-color:rgba(34,197,94,0.4)}
+.toast.error{border-color:rgba(239,68,68,0.4)}
+.toast .title{font-weight:700; margin-bottom:4px}
+.toast .msg{font-size:13px; color:var(--muted)}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-visual{order:-1; min-height:200px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width: 640px){
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3, 1fr)}
+  .cta{flex-wrap:wrap}
+}
